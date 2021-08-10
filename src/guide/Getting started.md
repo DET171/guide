@@ -1,5 +1,4 @@
 # Installation
-
 ## Installing Node.js
 ### Windows
 Head over to the [Node.js website](https://nodejs.org/) and download the latest version.
