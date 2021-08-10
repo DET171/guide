@@ -5,3 +5,7 @@ However, the fact that Eris doesn't cover 100% of the Discord API is nothing to 
 So, if you've read until here and decided that you still want to learn Eris, you can proceed to the next section.
 <br>
 (This guide is modelled after the Discord.js guide)
+
+::: warning
+This is NOT an official Eris guide. This is just a tutorial made by a user of Eris who thinks that Eris lacks a user/beginner-friendly guide.
+:::

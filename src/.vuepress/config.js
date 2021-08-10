@@ -33,12 +33,12 @@ module.exports = {
    * ref：https://v1.vuepress.vuejs.org/theme/default-theme-config.html
    */
   themeConfig: {
-    repo: 'DET171/guide',
-    repoLabel: 'Edit this page on GitHub',
+    repo: '',
+    repoLabel: '',
     searchPlaceholder: 'Search something...',
     editLinks: false,
-    docsDir: '',
-    editLinkText: '',
+    docsDir: 'DET171/guide',
+    editLinkText: 'Edit this page on GitHub',
     lastUpdated: false,
     nav: [
       {
@@ -48,6 +48,10 @@ module.exports = {
       {
         text: 'Eris',
         link: 'https://github.com/abalabahaha/eris'
+      },
+      {
+        text: 'Discord Support Server',
+        link: 'https://abal.moe/Eris/invite'
       }
     ],
     sidebar: {
@@ -74,6 +78,13 @@ module.exports = {
           children: [
             'build/',
             'build/more cmds'
+          ]
+        },
+        {
+          title: 'More Advanced Features',
+          collapsable: false,
+          children: [
+            'build/handler',
           ]
         }
       ],
