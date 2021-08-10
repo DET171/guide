@@ -33,7 +33,8 @@ module.exports = {
    * ref：https://v1.vuepress.vuejs.org/theme/default-theme-config.html
    */
   themeConfig: {
-    repo: '',
+    repo: 'DET171/guide',
+    repoLabel: 'Edit this page on GitHub',
     searchPlaceholder: 'Search something...',
     editLinks: false,
     docsDir: '',
@@ -45,7 +46,7 @@ module.exports = {
         link: '/guide/',
       },
       {
-        text: 'GitHub',
+        text: 'Eris',
         link: 'https://github.com/abalabahaha/eris'
       }
     ],
@@ -65,6 +66,14 @@ module.exports = {
           children: [
             'Getting started',
             'linter',
+          ]
+        },
+        {
+          title: 'Building a bot',
+          collapsable: false,
+          children: [
+            'build/',
+            'build/more cmds'
           ]
         }
       ],
