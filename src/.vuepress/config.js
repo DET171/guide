@@ -1,10 +1,16 @@
 const { description } = require('../../package')
+const path = require('path');
 
 module.exports = {
+  markdown: {
+    lineNumbers: true
+  },
+  templateDev: path.join(__dirname, 'templates', 'index.dev.html'),
+	templateSSR: path.join(__dirname, 'templates', 'index.ssr.html'),
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
    */
-  title: 'Guide',
+  title: 'Eris: A Discord Bot Guide',
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#description
    */
@@ -16,7 +22,7 @@ module.exports = {
    * ref：https://v1.vuepress.vuejs.org/config/#head
    */
   head: [
-    ['meta', { name: 'theme-color', content: '#3eaf7c' }],
+    ['meta', { name: 'theme-color', content: '#7354ff' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
     ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }]
   ],
@@ -28,6 +34,7 @@ module.exports = {
    */
   themeConfig: {
     repo: '',
+    searchPlaceholder: 'Search something...',
     editLinks: false,
     docsDir: '',
     editLinkText: '',
@@ -38,22 +45,25 @@ module.exports = {
         link: '/guide/',
       },
       {
-        text: 'Config',
-        link: '/config/'
-      },
-      {
-        text: 'VuePress',
-        link: 'https://v1.vuepress.vuejs.org'
+        text: 'GitHub',
+        link: 'https://github.com/abalabahaha/eris'
       }
     ],
     sidebar: {
       '/guide/': [
         {
-          title: 'Guide',
+          title: 'Home',
           collapsable: false,
           children: [
             '',
-            'using-vue',
+            'prerequisites',
+          ]
+        },
+        {
+          title: 'Getting started',
+          collapsable: false,
+          children: [
+            'Getting started',
           ]
         }
       ],
@@ -66,6 +76,5 @@ module.exports = {
   plugins: [
     '@vuepress/plugin-back-to-top',
     '@vuepress/plugin-medium-zoom',
-  ],
-  base: './'
+  ]
 }
