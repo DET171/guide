@@ -64,6 +64,7 @@ module.exports = {
           collapsable: false,
           children: [
             'Getting started',
+            'linter',
           ]
         }
       ],
