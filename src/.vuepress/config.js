@@ -46,12 +46,12 @@ module.exports = {
         link: '/guide/',
       },
       {
-        text: 'Eris',
+        text: 'Official Eris Docs',
         link: 'https://github.com/abalabahaha/eris'
       },
       {
-        text: 'Discord Support Server',
-        link: 'https://abal.moe/Eris/invite'
+        text: 'Docs Repo',
+        link: 'https://github.com/DET171/guide.git'
       }
     ],
     sidebar: {
@@ -85,6 +85,7 @@ module.exports = {
           collapsable: false,
           children: [
             'build/handler',
+            'build/help',
           ]
         }
       ],

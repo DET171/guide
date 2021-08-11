@@ -20,7 +20,7 @@ bot.on("messageCreate", (message) => {
 
   const args = message.content.slice(prefix.length).trim().split(/ +/);
   const command = args.shift().toLowerCase();
-  
+
   if (command === 'ping') {
 		message.channel.createMessage('Pong!');
 	} else if (command === 'beep') {
@@ -56,13 +56,14 @@ mkdir commands
 cd commands
 mkdir misc # command category
 ```
-Note that we created the `misc` folder. As you can see, it is a category for commands. We will place JS files in it. 
+Note that we created the `misc` folder. As you can see, it is a category for commands. We will place JS files in it.
 ::: danger
 DO NOT place JS files under the `./commands` folder. If you do that, it will throw an error with the following code.
 :::
 Now, for the code.
-Replace the current code in `index.js` with the following (I will explain later):
+Replace the current code in `index.js` (I will explain by comments in the code):
 ```js
+// index.js
 const Eris = require('eris');
 require('dotenv').config();
 const bot = new Eris(process.env.TOKEN);
@@ -91,7 +92,7 @@ bot.on('messageCreate', async (message) => {
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
 	const commandName = args.shift().toLowerCase();
-  
+
 	if(commandName === 'foo') {
 		bot.createMessage(message.channel.id, 'Bar!');
 	}

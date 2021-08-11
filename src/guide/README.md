@@ -6,6 +6,6 @@ So, if you've read until here and decided that you still want to learn Eris, you
 <br>
 (This guide is modelled after the Discord.js guide)
 
-::: warning
+::: warning DISCLAIMER
 This is NOT an official Eris guide. This is just a tutorial made by a user of Eris who thinks that Eris lacks a user/beginner-friendly guide.
 :::

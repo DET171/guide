@@ -28,9 +28,9 @@
           run: npm run build
           env:
             ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
-        
+
         - name: Name
-          run: echo guide.js.org > ./src/.vuepress/dist/CNAME
+          run: echo eris.js.org > ./src/.vuepress/dist/CNAME
           env:
             ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
 
