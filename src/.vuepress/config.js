@@ -35,7 +35,7 @@ module.exports = {
   themeConfig: {
     repo: '',
     repoLabel: '',
-    searchPlaceholder: 'Search something...',
+    searchPlaceholder: 'Search the Guide...',
     editLinks: false,
     docsDir: 'DET171/guide',
     editLinkText: 'Edit this page on GitHub',

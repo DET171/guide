@@ -52,6 +52,7 @@ Now, we only need to check the `command` variable to determine the command, inst
 We need to create a few folders first.
 Again, open the command propmt/terminal. Run the following:
 ```bash
+npm i fs # we will need the fs module
 mkdir commands
 cd commands
 mkdir misc # command category
@@ -64,31 +65,36 @@ Now, for the code.
 Replace the current code in `index.js` (I will explain by comments in the code):
 ```js
 // index.js
-const Eris = require('eris');
-require('dotenv').config();
-const bot = new Eris(process.env.TOKEN);
-const fs = require('fs');
-const prefix = process.env.PREFIX;
+const Eris = require('eris'); // require eris
+require('dotenv').config(); // require variables from .env file
+const bot = new Eris(process.env.TOKEN); // create bot instance
+// or new Eris.Client(`Bot ${process.env.TOKEN}`);
+const fs = require('fs'); // require file system API
+const prefix = process.env.PREFIX; // set prefix variable
 
-bot.commands = new Eris.Collection();
-bot.cooldowns = new Eris.Collection();
+bot.commands = new Eris.Collection(); // create new command collection
+bot.cooldowns = new Eris.Collection(); // create new cooldown collection
+/* you can read more about collections here:
+https://abal.moe/Eris/docs/Collection */
 
-const commandFolders = fs.readdirSync('./commands');
+const commandFolders = fs.readdirSync('./commands'); // read the `./commands` directory for folders
 
-for (const folder of commandFolders) {
+for (const folder of commandFolders) { // repeat for the number of folders in `./commands`
 	const commandFiles = fs.readdirSync(`./commands/${folder}`).filter(file => file.endsWith('.js'));
-	for (const file of commandFiles) {
-		const command = require(`./commands/${folder}/${file}`);
-		bot.commands.set(command.name, command);
-		console.log(command.name);
+    /* ^^ read all the files in the different folders ending with `.js` under `./commands` ^^ */
+	for (const file of commandFiles) { // repeat for the number of `commandFiles`
+		const command = require(`./commands/${folder}/${file}`); // read the exported values in the `.js file`
+		bot.commands.set(command.name, command); // set the command in the `commands` collection
+		console.log(command.name); // log the command name (to show that it has loaded)
 	}
 }
 
 bot.on('ready', () => {
 	console.log('Ready as ' + bot.user.username + '#' + bot.user.discriminator);
+    // log the client (a.k.a. bot) tag when it has logged in
 });
 
-bot.on('messageCreate', async (message) => {
+bot.on('messageCreate', async (message) => { // `messageCreate` event
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
 	const commandName = args.shift().toLowerCase();
@@ -135,7 +141,7 @@ bot.on('messageCreate', async (message) => {
 	setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
 	try {
-		command.execute(message, args, bot, prefix);
+		command.execute(message, args, prefix);
 	}
 	catch (error) {
 		console.error(error);
@@ -145,4 +151,53 @@ bot.on('messageCreate', async (message) => {
 });
 
 bot.connect();
+```
+## The command file code
+This is the boilerplate code for the command files:
+```js
+module.exports = {
+	name: 'ping',
+	description: 'ping pong 🏓',
+	aliases: ['pong'],
+    args: false,
+	usage: 'command ?<name>',
+	cooldown: 5,
+	async execute(message, args, prefix) {
+  }
+};
+```
+::: warning PARAMETERS
+| Parameter name        | Required           | Description      |
+| :-------------------: |:----------------:  | :-----:           |
+| Name                  | :heavy_check_mark: | Command trigger  |
+| Description           | :heavy_check_mark: | command description    |
+| aliases               | :x:                |    command trigger aliases        |
+| args   | :x: (but recommended)  | whether arguments are needed for this command  |
+| usage   | :x: ( :heavy_check_mark: if `args: true`)  | How to use this command  |
+| cooldown   | :x: (defaults to 3)  | How long the user needs to wait before reusing this command (in seconds)  |
+| `execute(message, args, prefix)`  | :heavy_check_mark:  | The code that should be executed when the command is triggered  |
+:::
+
+
+Now, for the examples.
+Under `./commands/misc/`, create a file named `args.js`.
+Dump the following code inside:
+```js
+module.exports = {
+	name: 'ping',
+	description: 'ping pong 🏓',
+	aliases: ['pong'],
+    args: false,
+	usage: 'command ?<name>',
+	cooldown: 5,
+	async execute(message, args, prefix) {
+    if (!args.length) { // check for arguments
+			return message.channel.createMessage(`You didn't provide any arguments, ${message.author}!`);
+		} else if (args[0] === 'foo') { // if the first argument is 'foo' (the argument is an array)
+			return message.channel.createMessage('bar'); // send 'bar'
+		}
+		message.channel.createMessage(`Arguments: ${args.join(', ')}`);
+      // if none of the above, send the arguments joined with ', '.
+	}
+};
 ```
