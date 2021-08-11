@@ -96,61 +96,67 @@ bot.on('ready', () => {
 
 bot.on('messageCreate', async (message) => { // `messageCreate` event
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
-	const args = message.content.slice(prefix.length).trim().split(/ +/);
-	const commandName = args.shift().toLowerCase();
+    // return if author is bot or message
+	const args = message.content.slice(prefix.length).trim().split(/ +/); // get the arguments
+	const commandName = args.shift().toLowerCase(); // get the command
 
-	if(commandName === 'foo') {
-		bot.createMessage(message.channel.id, 'Bar!');
+	if(commandName === 'foo') { // if commandName is 'foo'
+		bot.createMessage(message.channel.id, 'Bar!'); // send 'bar!'
+        // ^^ method 2 for sending messages
 	}
 
 
 	const command = bot.commands.get(commandName) || bot.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
+    // get the command
 	if (!command) return;
+    // return if command doesn't exist
 
-
-	if (command.args && !args.length) {
+	if (command.args && !args.length) { // if command requires arguments but no arguments were provided
 		let reply = `You didn't provide any arguments, ${message.author.mention}!`;
 
-		if (command.usage) {
+		if (command.usage) { // if command usage is provided
 			reply += `\nThe proper usage would be: \`${prefix}${command.name} ${command.usage}\``;
 		}
 
-		return message.channel.createMessage(reply);
+		return message.channel.createMessage(reply); // send and stop
 	}
 
-	const { cooldowns } = bot;
+	const { cooldowns } = bot; // get the `cooldowns` collection from the client/bot instance
 
-	if (!cooldowns.has(command.name)) {
-		cooldowns.set(command.name, new Eris.Collection());
+	if (!cooldowns.has(command.name)) { // if the cooldown doesn't have the command
+		cooldowns.set(command.name, new Eris.Collection()); // add to collection
 	}
 
-	const now = Date.now();
-	const timestamps = cooldowns.get(command.name);
-	const cooldownAmount = (command.cooldown || 3) * 1000;
+	const now = Date.now(); // get current milliseconds elapsed since January 1, 1970 00:00:00 UTC
+	const timestamps = cooldowns.get(command.name); // get command from cooldowns
+	const cooldownAmount = (command.cooldown || 3) * 1000; // check if there the cooldown duration is provided, if not, take it as 3
+    // ^^ convert to ms
 
-	if (timestamps.has(message.author.id)) {
-		const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
+	if (timestamps.has(message.author.id)) { // if has author id
+		const expirationTime = timestamps.get(message.author.id) + cooldownAmount; // get exp time
 
-		if (now < expirationTime) {
-			const timeLeft = (expirationTime - now) / 1000;
+		if (now < expirationTime) { // if current time is less than exp time
+			const timeLeft = (expirationTime - now) / 1000; // get time left
 			return bot.createMessage(message.channel.id, `${message.author.mention}, please wait ${timeLeft.toFixed(1)} more second(s) before reusing the \`${command.name}\` command.`);
+            // ^^ tell author time left before he can reuse command
 		}
 	}
 
-	timestamps.set(message.author.id, now);
-	setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
+	timestamps.set(message.author.id, now); // set the timestamp
+	setTimeout(() => timestamps.delete(message.author.id), cooldownAmount); // delete author id from list when time is up
 
 	try {
-		command.execute(message, args, prefix);
+		command.execute(message, args, prefix); // if all goes well, execute the command
+        // ^^ pass the `message`, `args`, and `prefix` variable to the command files
 	}
-	catch (error) {
-		console.error(error);
+	catch (error) { // catch error to stop bot from crashing
+		console.error(error); // log error
 		bot.createMessage(message.channel.id, `<@${message.author.id}>, there was an error trying to execute that command!`);
+        // tell author there was error executing the command
 	}
-
 });
 
-bot.connect();
+bot.connect(); // finally, connect to Discord
 ```
 ## The command file code
 This is the boilerplate code for the command files:
