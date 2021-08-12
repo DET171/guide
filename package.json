@@ -15,8 +15,10 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@vue/component-compiler-utils": "^3.2.2",
     "@vuepress/plugin-back-to-top": "^1.8.2",
     "@vuepress/plugin-medium-zoom": "^1.8.2",
-    "vuepress": "^1.5.3"
+    "@vuepress/shared-utils": "^1.8.2",
+    "vuepress": "^1.8.2"
   }
 }

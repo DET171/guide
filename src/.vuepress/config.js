@@ -42,8 +42,12 @@ module.exports = {
     lastUpdated: false,
     nav: [
       {
-        text: 'Guide',
-        link: '/guide/',
+        text: 'Guide (v0.15.1)',
+        link: '/v0.15.1/',
+      },
+      {
+        text: 'For Reference',
+        link: '/ref/',
       },
       {
         text: 'Official Eris Docs',
@@ -55,7 +59,7 @@ module.exports = {
       }
     ],
     sidebar: {
-      '/guide/': [
+      '/v0.15.1/': [
         {
           title: 'Home',
           collapsable: false,
@@ -77,7 +81,8 @@ module.exports = {
           collapsable: false,
           children: [
             'build/',
-            'build/more cmds'
+            'build/more cmds',
+            'build/misc'
           ]
         },
         {
@@ -87,7 +92,38 @@ module.exports = {
             'build/handler',
             'build/help',
           ]
+        },
+        {
+          title: 'Third-party command handlers',
+          collapsable: false,
+          children: [
+            'ch/',
+            'ch/ex'
+          ]
         }
+      ],
+      '/ref/': [
+        {
+          title: 'References',
+          collapsable: false,
+          children: [
+            '',
+          ]
+        },
+        {
+          title: 'Objects',
+          collapsable: false,
+          children: [
+            'guild',
+            'channel',
+            'member',
+            'message',
+            'log',
+            'int',
+            'perms',
+            'events',
+          ]
+        },
       ],
     }
   },
