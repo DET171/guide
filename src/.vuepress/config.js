@@ -34,13 +34,15 @@ module.exports = {
    */
   themeConfig: {
     repo: '',
+    lang: 'en-US',
     repoLabel: '',
     searchPlaceholder: 'Search the Guide...',
     editLinks: false,
-    docsDir: 'DET171/guide',
+    docsDir: 'https://github.com/DET171/guide.git',
     editLinkText: 'Edit this page on GitHub',
     lastUpdated: false,
-    nav: [
+    navbar: [
+      // NavbarItem
       {
         text: 'Guide (v0.15.1)',
         link: '/v0.15.1/',
@@ -51,7 +53,7 @@ module.exports = {
       },
       {
         text: 'Official Eris Docs',
-        link: 'https://github.com/abalabahaha/eris'
+        link: 'https://abal.moe/Eris/docs/getting-started'
       },
       {
         text: 'Docs Repo',
@@ -61,67 +63,60 @@ module.exports = {
     sidebar: {
       '/v0.15.1/': [
         {
-          title: 'Home',
-          collapsable: false,
+          text: 'Home',
           children: [
-            '',
-            'prerequisites',
+            '/v0.15.1/',
+            '/v0.15.1/prerequisites.md',
           ]
         },
         {
-          title: 'Getting started',
-          collapsable: false,
+          text: 'Getting started',
           children: [
-            'Getting started',
-            'linter',
+            '/v0.15.1/Getting started.md',
+            '/v0.15.1/linter.md',
           ]
         },
         {
-          title: 'Building a bot',
-          collapsable: false,
+          text: 'Building a bot',
           children: [
-            'build/',
-            'build/more cmds',
-            'build/misc'
+            '/v0.15.1/build/',
+            '/v0.15.1/build/more cmds.md',
+            '/v0.15.1/build/misc'
           ]
         },
         {
-          title: 'More Advanced Features',
-          collapsable: false,
+          text: 'More Advanced Features',
           children: [
-            'build/handler',
-            'build/help',
+            '/v0.15.1/build/handler',
+            '/v0.15.1/build/help',
           ]
         },
         {
-          title: 'Third-party command handlers',
-          collapsable: false,
+          text: 'Third-party command handlers',
           children: [
-            'ch/',
-            'ch/ex'
+            '/v0.15.1/ch/',
+            '/v0.15.1/ch/ex'
           ]
         }
       ],
       '/ref/': [
         {
-          title: 'References',
-          collapsable: false,
+          text: 'References',
           children: [
-            '',
+            '/ref/',
           ]
         },
         {
-          title: 'Objects',
-          collapsable: false,
-          children: [
-            'guild',
-            'channel',
-            'member',
-            'message',
-            'log',
-            'int',
-            'perms',
-            'events',
+          text: 'Objects',
+            children: [
+            '/ref/guild.md',
+            '/ref/channel.md',
+            '/ref/member.md',
+            '/ref/message.md',
+            '/ref/log.md',
+            '/ref/int.md',
+            '/ref/perms.md',
+            '/ref/events.md',
           ]
         },
       ],
