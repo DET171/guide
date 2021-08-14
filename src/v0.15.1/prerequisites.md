@@ -9,7 +9,7 @@ There are a few prerequisites before you can start writing a Discord bot with Er
 <br>
 
 
-If you don't have Node.js installed, head over <a href="/guide/Getting%20started.html#installing-node-js">here</a> to check how to install it.
+If you don't have Node.js installed, head over <a href="./Getting%20started.html#installing-node-js">here</a> to check how to install it.
 
 ## Knowledge
 We assume, of course, that you have a good knowledge of JavaScript and Node.js.
