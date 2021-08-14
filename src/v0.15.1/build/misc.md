@@ -19,3 +19,7 @@ A list of statuses:
 [Read more](https://abal.moe/Eris/docs/Client#method-editStatus)
 
 ## Get a member
+```js
+const guild = message.channel.guild; // get the guild object
+const member = guild.members.get('<UserID>');
+```
