@@ -52,7 +52,6 @@ Now, we only need to check the `command` variable to determine the command, inst
 We need to create a few folders first.
 Again, open the command propmt/terminal. Run the following:
 ```bash
-npm i fs # we will need the fs module
 mkdir commands
 cd commands
 mkdir misc # command category

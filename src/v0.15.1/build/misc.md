@@ -8,7 +8,7 @@ There are a few Discord statuses: <br>
 <br>
 You can edit the bot status by using the following:
 ```js
-bot.editStatus('dnd'); 
+bot.editStatus('dnd');
 ```
 A list of statuses:
 - DnD
@@ -17,3 +17,5 @@ A list of statuses:
 - Invisible
 
 [Read more](https://abal.moe/Eris/docs/Client#method-editStatus)
+
+## Get a member
