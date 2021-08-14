@@ -36,9 +36,9 @@ module.exports = {
     repo: '',
     lang: 'en-US',
     repoLabel: '',
-    searchPlaceholder: 'Search the Guide...',
+    // searchPlaceholder: 'Search the Guide...',
     editLinks: false,
-    docsDir: 'https://github.com/DET171/guide.git',
+    docsRepo: 'https://github.com/DET171/guide.git',
     editLinkText: 'Edit this page on GitHub',
     lastUpdated: false,
     navbar: [
@@ -129,5 +129,14 @@ module.exports = {
   plugins: [
     '@vuepress/plugin-back-to-top',
     '@vuepress/plugin-medium-zoom',
+    '@vuepress/plugin-search',
+      {
+        locales: {
+          '/': {
+            placeholder: 'Search',
+        },
+      },
+      getExtraFields: (page) => page.headers ?? [],
+    },
   ]
 }

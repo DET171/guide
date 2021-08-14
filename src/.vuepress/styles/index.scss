@@ -31,11 +31,15 @@ html {
 .site-name {
 	margin-left: 1.35rem;
 }
+form.search-box {
+	float: right;
+}
 @media only screen and (max-width: 725px) {
 	.site-name {
 		display: none;
 	}
 }
+
 :root {
   // brand colors
   --c-brand: #0064f0;
@@ -103,6 +107,10 @@ html {
   --sidebar-width-mobile: calc(var(--sidebar-width) * 0.82);
   --content-width: 740px;
   --homepage-width: 960px;
+	--back-to-top-z-index: 5;
+
+  --back-to-top-color: #3eaf7c;
+  --back-to-top-color-hover: #71cda3;
 }
 
 // plugin-back-to-top
@@ -194,6 +202,10 @@ html.dark {
 
   // code blocks vars
   --code-hl-bg-color: #363b46;
+	--back-to-top-z-index: 5;
+
+  --back-to-top-color: #3eaf7c;
+  --back-to-top-color-hover: #71cda3;
 }
 
 // plugin-docsearch

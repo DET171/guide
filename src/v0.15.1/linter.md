@@ -17,7 +17,7 @@ Now, install ESLint:
 ```bash
 npm i -D eslint
 # OR
-yarn add -D eslint 
+yarn add -D eslint
 ```
 
 Afterward, install the appropriate plugin(s) for your editor of choice.
@@ -51,7 +51,7 @@ ESLint may display many warnings and errors about your code when you start using
 ```
 You just need to plonk the rules inside `"rules": {}`.
 An example `eslintrc.json` file (complete with rules):
-```json{11-44}
+```json{11-45}
 {
 	"extends": "eslint:recommended",
 	"env": {
