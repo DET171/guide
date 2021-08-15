@@ -12,3 +12,12 @@ config.local.js
 basement_dist
 .cache
 .temp
+.yarn/*
+.yarn/
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+*.log
