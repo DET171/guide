@@ -12,8 +12,7 @@ config.local.js
 basement_dist
 .cache
 .temp
-.yarn/*
-.yarn/
+.yarn/cache
 !.yarn/patches
 !.yarn/releases
 !.yarn/plugins
@@ -21,3 +20,4 @@ basement_dist
 !.yarn/versions
 .pnp.*
 *.log
+*.gz
