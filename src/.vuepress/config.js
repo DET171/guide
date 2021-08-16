@@ -36,7 +36,7 @@ module.exports = {
     repo: '',
     lang: 'en-US',
     repoLabel: '',
-    // searchPlaceholder: 'Search the Guide...',
+    //searchPlaceholder: 'Search the Guide...',
     editLinks: false,
     docsRepo: 'https://github.com/DET171/guide.git',
     editLinkText: 'Edit this page on GitHub',
@@ -44,8 +44,13 @@ module.exports = {
     navbar: [
       // NavbarItem
       {
-        text: 'Guide (v0.15.1)',
-        link: '/v0.15.1/',
+        text: 'Guide(s)',
+        children: [
+          {
+            text: 'v0.15.1',
+            link: '/v0.15.1/',
+          },
+        ],
       },
       {
         text: 'For Reference',
