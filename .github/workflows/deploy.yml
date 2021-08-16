@@ -20,7 +20,7 @@
            ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
 
         - name: Clean install dependencies
-          run: yarn --frozen-lockfile
+          run: yarn
           env:
             ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
 
