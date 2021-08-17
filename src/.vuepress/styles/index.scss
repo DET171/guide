@@ -11,28 +11,12 @@ html {
 .custom-block {
 	border-radius: 10px;
 }
-.navbar-links-item {
-	font-size: 1em !important;
-	border-radius: 7px !important;
-	padding: 5px 10px !important;
-	cursor: pointer !important;
-	&:hover {
-		background: #d6d6d6 !important;
-	}
-}
-.navbar {
-	padding: 0.75rem 0;
-	height: auto;
-}
-.navbar-links {
-	margin-top: -0.2rem;
-}
 
-.site-name {
-	margin-left: 1.35rem;
-}
 form.search-box {
 	float: right;
+}
+@media only screen and (min-width: 725px) {
+	/* will add later */
 }
 @media only screen and (max-width: 725px) {
 	.site-name {

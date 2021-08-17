@@ -10,7 +10,7 @@ module.exports = {
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
    */
-  title: 'Eris: A Discord Bot Guide',
+  title: `Eris: A Discord Bot Guide`,
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#description
    */
@@ -38,8 +38,10 @@ module.exports = {
     repoLabel: '',
     //searchPlaceholder: 'Search the Guide...',
     editLinks: false,
-    docsRepo: 'https://github.com/DET171/guide.git',
-    editLinkText: 'Edit this page on GitHub',
+    docsRepo: 'https://github.com/DET171/guide',
+    docsBranch: 'master',
+    docsDir: 'src',
+    editLinkText: 'Edit this page',
     lastUpdated: false,
     navbar: [
       // NavbarItem
@@ -62,7 +64,7 @@ module.exports = {
       },
       {
         text: 'Docs Repo',
-        link: 'https://github.com/DET171/guide.git'
+        link: 'https://github.com/DET171/guide'
       }
     ],
     sidebar: {
@@ -86,7 +88,6 @@ module.exports = {
           children: [
             '/v0.15.1/build/',
             '/v0.15.1/build/more cmds.md',
-            '/v0.15.1/build/misc'
           ]
         },
         {
@@ -101,6 +102,12 @@ module.exports = {
           children: [
             '/v0.15.1/ch/',
             '/v0.15.1/ch/ex'
+          ]
+        },
+        {
+          text: 'Miscellaneous',
+          children: [
+            '/v0.15.1/build/misc',
           ]
         }
       ],
@@ -134,6 +141,7 @@ module.exports = {
   plugins: [
     '@vuepress/plugin-back-to-top',
     '@vuepress/plugin-medium-zoom',
+    '@vuepress/last-updated',
     '@vuepress/plugin-search',
       {
         locales: {
