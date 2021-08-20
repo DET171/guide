@@ -20,7 +20,7 @@
            ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
 
         - name: Install dependencies
-          run: npx synp -s yarn.lock && npm ci
+          run: yarn
           env:
             ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
 
