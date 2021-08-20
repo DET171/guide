@@ -19,8 +19,8 @@
           env:
            ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
 
-        - name: Clean install dependencies
-          run: yarn
+        - name: Install dependencies
+          run: yarn install
           env:
             ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
 
