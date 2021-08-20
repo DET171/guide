@@ -14,11 +14,18 @@ A few good ones are:
 One of the significant advantages proper code editors have over Notepad and Notepad++ is their ability to use linters. Linters check syntax and help you produce consistent code that follows specific style rules that you can define yourself if you choose to do so. They help form good habits if you stick to a single configuration. When you start using a linter, you might see many errors–this is normal and perfectly fine. It might be a pain to get through during the initial process, but it's most definitely worth it.
 <br>
 Now, install ESLint:
-```bash
-npm i -D eslint
-# OR
-yarn add -D eslint
+:::: code-group
+::: code-group-item YARN
+```sh
+yarn add eslint --dev
 ```
+:::
+::: code-group-item NPM
+```sh
+npm i eslint --save-dev
+```
+:::
+::::
 
 Afterward, install the appropriate plugin(s) for your editor of choice.
 - [ESLint for VS Code](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)

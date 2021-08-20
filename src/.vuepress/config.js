@@ -1,10 +1,10 @@
-const { description } = require('../../package')
 const path = require('path');
+const { description } = require(path.join(__dirname, '../../package.json'))
+const sidebar = require(path.join(__dirname, './sidebar.js'));
 
 module.exports = {
-  markdown: {
-    lineNumbers: true
-  },
+  bundler: '@vuepress/vite',
+  theme: path.resolve(__dirname, 'theme', 'index.js'),
   templateDev: path.join(__dirname, 'templates', 'index.dev.html'),
 	templateSSR: path.join(__dirname, 'templates', 'index.ssr.html'),
   /**
@@ -67,72 +67,7 @@ module.exports = {
         link: 'https://github.com/DET171/guide'
       }
     ],
-    sidebar: {
-      '/v0.15.1/': [
-        {
-          text: 'Home',
-          children: [
-            '/v0.15.1/',
-            '/v0.15.1/prerequisites.md',
-          ]
-        },
-        {
-          text: 'Getting started',
-          children: [
-            '/v0.15.1/Getting started.md',
-            '/v0.15.1/linter.md',
-          ]
-        },
-        {
-          text: 'Building a bot',
-          children: [
-            '/v0.15.1/build/',
-            '/v0.15.1/build/more cmds.md',
-          ]
-        },
-        {
-          text: 'More Advanced Features',
-          children: [
-            '/v0.15.1/build/handler',
-            '/v0.15.1/build/help',
-          ]
-        },
-        {
-          text: 'Third-party command handlers',
-          children: [
-            '/v0.15.1/ch/',
-            '/v0.15.1/ch/ex'
-          ]
-        },
-        {
-          text: 'Miscellaneous',
-          children: [
-            '/v0.15.1/build/misc',
-          ]
-        }
-      ],
-      '/ref/': [
-        {
-          text: 'References',
-          children: [
-            '/ref/',
-          ]
-        },
-        {
-          text: 'Objects',
-            children: [
-            '/ref/guild.md',
-            '/ref/channel.md',
-            '/ref/member.md',
-            '/ref/message.md',
-            '/ref/log.md',
-            '/ref/int.md',
-            '/ref/perms.md',
-            '/ref/events.md',
-          ]
-        },
-      ],
-    }
+    sidebar,
   },
 
   /**
@@ -147,9 +82,9 @@ module.exports = {
         locales: {
           '/': {
             placeholder: 'Search',
+          },
         },
+        getExtraFields: (page) => page.headers ?? [],
       },
-      getExtraFields: (page) => page.headers ?? [],
-    },
   ]
 }

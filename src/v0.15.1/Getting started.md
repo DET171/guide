@@ -30,5 +30,19 @@ If you want to install the `dev` version of Eris instead of the stable version, 
 ```bash
 npm install --no-optional abalabahaha/eris#dev
 ```
+## Optional dependencies
+There are a few optional dependencies that you can choose not to install.
 
-Congrats! You have now installed all the required packages for your project.
+- [`bufferutil`](https://github.com/websockets/bufferutil) - WebSockets buffer utility (faster) (native)
+- [`abalabahaha/erlpack`](https://github.com/abalabahaha/erlpack) - Erlang Term Format encoder/decoder (might be faster) (native)
+- [`pako`](https://github.com/nodeca/pako) - compression library (faster)
+- [`zlib-sync`](https://github.com/abalabahaha/zlib-sync) - compression library (faster than pako) (native)
+- [`@discordjs/opus`](https://github.com/discordjs/opus) - opus audio encoding (faster) (native)
+- [`sodium-native`](https://github.com/sodium-friends/sodium-native) - audio encryption (faster) (native)
+- [`eris-sharder`](https://github.com/discordware/eris-sharder) - sharding manager for the JavaScript eris library
+
+
+
+
+
+<br>Congrats! You have now installed all the required packages for your project.

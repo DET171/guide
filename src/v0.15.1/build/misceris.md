@@ -1,4 +1,4 @@
-# Miscellaneous items
+# Eris Functions
 The `<Client>` in the following examples would be `bot`, if you followed the first few sections.
 ## Editing your bot's status
 You have probably seen users change statuses on Discord. Well, bots can, too!<br>
