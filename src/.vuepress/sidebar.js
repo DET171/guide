@@ -22,7 +22,7 @@ module.exports = {
         ]
       },
       {
-        text: 'More Advanced Features',
+        text: 'More advanced features',
         children: [
           '/v0.15.1/build/handler',
           '/v0.15.1/build/help',
@@ -33,6 +33,13 @@ module.exports = {
         children: [
           '/v0.15.1/ch/',
           '/v0.15.1/ch/ex'
+        ]
+      },
+      {
+        text: 'Storing Data',
+        children: [
+          '/v0.15.1/db/',
+        //  '/v0.15.1/ch/ex'
         ]
       },
       {
