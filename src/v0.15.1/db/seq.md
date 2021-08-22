@@ -60,4 +60,123 @@ const Tags = sequelize.define('tags', {
 	},
 });
 ```
-The model mirrors very closely what the database defines. There will be a table with four fields called `name`, `description`, `username`, and `usage_count`.
+The model mirrors very closely what the database defines. There will be a table with four fields called `name`, `description`, `username`, and `usage_count`.<br>
+`sequelize.define()` takes two parameters. `'tags'` are passed as the name of our table, and an object that represents the table's schema in key-value pairs. Keys in the object become the model's attributes, and the values describe the attributes.<br>
+`type` refers to what kind of data this attribute should hold. The most common types are number, string, and date, but other data types are available depending on the database.<br>
+`unique: true` will ensure that this field will never have duplicated entries. Duplicate tag names are disallowed in this database.<br>
+`defaultValue` allows you to set a fallback value if there's no initial value during the insert.<br>
+`allowNull` is not all that important, but this will guarantee in the database that the attribute is never unset. You could potentially set it to be a blank or empty string, but it has to be something.<br>
+::: tip
+`Sequelize.STRING` vs. `Sequelize.TEXT`: In most database systems, the string's length is a fixed length for performance reasons. Sequelize defaults this to 255. Use STRING if your input has a max length, and use TEXT if it does not. For sqlite, there is no unbounded string type, so it will not matter which one you pick.
+:::
+## Syncing the model
+Now that your structure is defined, you need to make sure the model exists in the database. To make sure the bot is ready and all the data you might need has arrived, place the following code into the `.on('ready', ...)` event callback.
+```js
+Tags.sync();
+```
+The table does not get created until you `sync` it. The schema you defined before was building the model that lets Sequelize know how the data should look. For testing, you can use `Tags.sync({ force: true })` to recreate the table every time on startup. This way, you can get a blank slate each time.
+## Adding a tag
+After all this preparation, you can now write your first command! Let's start with the ability to add a tag. Create an `addtag` command.
+::: details Creating a command
+In case you have forgotten how to create a command, refer to [this section](/v0.15.1/build/handler.html#the-command-handler-code).
+:::
+Put the following code inside:
+```js
+// NOTE: When sending the tags in the message, use camelCase and refrain from using spaces for
+// the tag name and tag description
+// GOOD: !addtag tagName tagDesc
+// BAD: !addtag tag name tag desc
+const tagName = args[0];
+const tagDescription = args[1];
+
+try {
+	// equivalent to: INSERT INTO tags (name, description, username) values (?, ?, ?);
+	const tag = await Tags.create({
+		name: tagName,
+		description: tagDescription,
+		username: `${message.author.username}#${message.author.discriminator}`,
+	});
+	return message.channel.createMessage(`${message.author.mention}, tag ${tag.name} added.`);
+}
+catch (error) {
+	if (error.name === 'SequelizeUniqueConstraintError') {
+		return message.channel.createMessage('That tag already exists.');
+	}
+	return message.channel.createMessage('Something went wrong with adding a tag.');
+}
+```
+`Tags.create()` uses the models that you created previously. The `.create()` method inserts some data into the model. You are going to insert a tag name, description, and the author name into the database.
+The `catch (error)` section is necessary for the insert because it will offload checking for duplicates to the database to notify you if an attempt to create a tag that already exists occurs. The alternative is to query the database before adding data and checking if a result returns. If there are no errors or no identical tag is found, only then would you add the data. Of the two methods, it is clear that catching the error is less work for you.
+Although `if (error.name === 'SequelizeUniqueConstraintError')` was mostly for doing less work, it is always good to handle your errors, especially if you know what types of errors you will receive. This error comes up if your unique constraint is violated, i.e., duplicate values are inserted.
+
+::: tip
+Do not use catch for inserting new data. Only use it for gracefully handling things that go wrong in your code or logging errors.
+:::
+## Fetching a tag
+Create a `fetchtag` command.
+To fetch a tag, you'd do:
+```js
+const tagName = args[0];
+
+// equivalent to: SELECT * FROM tags WHERE name = 'tagName' LIMIT 1;
+const tag = await Tags.findOne({ where: { name: tagName } });
+if (tag) {
+	// equivalent to: UPDATE tags SET usage_count = usage_count + 1 WHERE name = 'tagName';
+	tag.increment('usage_count');
+	return message.channel.createMessage(tag.get('description'));
+}
+return message.channel.createMessage(`Could not find tag: ${tagName}`);
+```
+This is your first query. You are finally doing something with your data; yay!
+`.findOne()` is how you fetch a single row of data. The `where: { name: tagName }` makes sure you only get the row with the desired tag. Since the queries are asynchronous, you will need to use `await` to fetch it. After receiving the data, you can use `.get()` on that object to grab the data. If no data is received, then you can tell the user that the query returned no data.
+::: tip
+In case you get an error saying `Uncaught SyntaxError: await is only valid in async functions and the top level bodies of modules`, find `execute(message, args, prefix)` in your command file and replace it with `async execute(message, args, prefix)`. <br>
+P.S. Not recommended: use an `async` IIFE.
+:::
+## Editing a tag
+Create an `edittag` command. The code for the command will be:
+```js
+const tagName = args[0];
+const tagDescription = args[1];
+
+// equivalent to: UPDATE tags (description) values (?) WHERE name='?';
+const affectedRows = await Tags.update({ description: tagDescription }, { where: { name: tagName } });
+if (affectedRows > 0) {
+	return message.channel.createMessage(`Tag ${tagName} was edited.`);
+}
+return message.channel.createMessage(`Could not find a tag with name ${tagName}.`);
+```
+It is possible to edit a record by using the `.update()` function. An update returns the number of rows that the `where` condition changed. Since you can only have tags with unique names, you do not have to worry about how many rows may change. Should you get that the query didn't alter any rows, you can conclude that the tag did not exist.
+## Displaying a tag information
+Create a `taginfo` command. Put the following code inside:
+```js
+const tagName = args[0];
+
+// equivalent to: SELECT * FROM tags WHERE name = 'tagName' LIMIT 1;
+const tag = await Tags.findOne({ where: { name: tagName } });
+if (tag) {
+	return message.channel.createMessage(`${tagName} was created by ${tag.username} at ${tag.createdAt} and has been used ${tag.usage_count} times.`);
+}
+return message.channel.createMessage(`Could not find tag: ${tagName}`);
+```
+This section is very similar to the previous command, except you will be showing the tag metadata. `tag` contains your tag object. Notice two things: firstly, it is possible to access the object's properties without the `.get()` function. This is because the object is an instance of a Tag, which you can treat as an object and not just a row of data. Second, you can access a property that was not defined explicitly, `createdAt`. This is because Sequelize automatically adds that column to all tables. Passing another object into the model with `{ createdAt: false }` can disable this feature, but in this case, it was useful to have.
+## Listing all tags
+The next command will enable you to fetch a list of all the created tags.
+```js
+// equivalent to: SELECT name FROM tags;
+const tagList = await Tags.findAll({ attributes: ['name'] });
+const tagString = tagList.map(t => t.name).join(', ') || 'No tags set.';
+return message.channel.createMessage(`List of tags: ${tagString}`);
+```
+
+Here, you can use the `.findAll()` method to grab all the tag names. Notice that instead of having `where`, the optional field, `attributes`, is set. Setting attributes to name will let you get *only* the names of tags. If you tried to access other fields, like the tag author, you would get an error. If left blank, it will fetch *all* of the associated column data. It will not affect the results returned, but from a performance perspective, you should only grab the necessary data. If no results are returned, `tagString` will default to 'No tags set'.
+## Deleting a tag
+```js
+const tagName = args[0];
+// equivalent to: DELETE from tags WHERE name = ?;
+const rowCount = await Tags.destroy({ where: { name: tagName } });
+if (!rowCount) return message.channel.createMessage('That tag did not exist.');
+
+return interaction.reply('Tag deleted.');
+```
+`.destroy()` runs the delete operation. The operation returns a count of the number of affected rows. If it returns with a value of 0, then nothing was deleted, and that tag did not exist in the database in the first place.
