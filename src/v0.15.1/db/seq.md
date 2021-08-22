@@ -35,3 +35,28 @@ In any relational database, you need to create tables to store your data. This s
 |--------|------|------|------|
 |alice   | is in wonderland   |  alice |11|
 | jack   | (～￣▽￣)～  |  jill |  5 |
+
+To do that in Sequelize, you define a model based on this structure, as shown below.
+```js
+/*
+ * equivalent to: CREATE TABLE tags(
+ * name VARCHAR(255),
+ * description TEXT,
+ * username VARCHAR(255),
+ * usage_count  INT NOT NULL DEFAULT 0
+ * );
+ */
+const Tags = sequelize.define('tags', {
+	name: {
+		type: Sequelize.STRING,
+		unique: true,
+	},
+	description: Sequelize.TEXT,
+	username: Sequelize.STRING,
+	usage_count: {
+		type: Sequelize.INTEGER,
+		defaultValue: 0,
+		allowNull: false,
+	},
+});
+```
