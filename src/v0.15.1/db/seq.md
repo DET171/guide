@@ -78,7 +78,7 @@ The table does not get created until you `sync` it. The schema you defined befor
 ## Adding a tag
 After all this preparation, you can now write your first command! Let's start with the ability to add a tag. Create an `addtag` command.
 ::: details Creating a command
-In case you have forgotten how to create a command, refer to [this section](/v0.15.1/build/handler.html#the-command-handler-code).
+In case you have forgotten how to create a command, refer to [this section](/v0.15.1/build/handler.html#the-command-file-code).
 :::
 Put the following code inside:
 ```js
