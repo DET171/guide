@@ -36,6 +36,7 @@ module.exports = {
     repo: '',
     lang: 'en-US',
     repoLabel: '',
+
     //searchPlaceholder: 'Search the Guide...',
     editLinks: false,
     docsRepo: 'https://github.com/DET171/guide',

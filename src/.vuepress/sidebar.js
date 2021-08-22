@@ -39,7 +39,7 @@ module.exports = {
         text: 'Storing Data',
         children: [
           '/v0.15.1/db/',
-        //  '/v0.15.1/ch/ex'
+          '/v0.15.1/db/seq'
         ]
       },
       {

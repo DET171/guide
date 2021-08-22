@@ -21,14 +21,23 @@
 			location.replace(`https:${location.href.substring(location.protocol.length)}`);
 		}
 	}());
+	// location.reload();
+
 	</script>
+	<script lang="javascript">
+	(function() {
+		var url = window.location.href;
+		var lastPart = url.substr(url.lastIndexOf('#') + 1);
+
+		if (lastPart === "reloaded") {
+   		location.reload();
+		}
+	}());
+</script>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
 	<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-	<script type="text/javascript">
-		window.onload = function() {
-			AOS.init();
-		}
-	</script>
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="-1">
 </head>
 <body>
 	<div id="app"></div>
