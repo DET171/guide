@@ -60,3 +60,4 @@ const Tags = sequelize.define('tags', {
 	},
 });
 ```
+The model mirrors very closely what the database defines. There will be a table with four fields called `name`, `description`, `username`, and `usage_count`.

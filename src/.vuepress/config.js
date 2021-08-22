@@ -3,6 +3,7 @@ const { description } = require(path.join(__dirname, '../../package.json'))
 const sidebar = require(path.join(__dirname, './sidebar.js'));
 
 module.exports = {
+  shouldPrefetch: true,
   bundler: '@vuepress/vite',
   theme: path.resolve(__dirname, 'theme', 'index.js'),
   templateDev: path.join(__dirname, 'templates', 'index.dev.html'),
