@@ -10,4 +10,28 @@ To begin, you should install Sequelize into your discord.js project. We will exp
 npm install --save sequelize
 npm install --save sqlite3
 ```
+## Collecting information
 After you have installed Sequelize, open your `index.js` file.
+Require Sequelize:
+```js
+const Sequelize = require('sequelize');
+```
+and define the connection information. It should look something like this:
+```js
+const sequelize = new Sequelize('database', 'user', 'password', {
+	host: 'localhost',
+	dialect: 'sqlite',
+	logging: false,
+	// SQLite only
+	storage: 'database.sqlite',
+});
+```
+`host` tells Sequelize where to look for the database. For most systems, the host will be localhost, as the database usually resides with the application. If you have a remote database, however, then you can set it to that connection address. Otherwise, don't touch this unless you know what you're doing.
+`dialect` refers to the database engine you are going to use. For this tutorial, it will be sqlite.
+`logging` enables verbose output from Sequelize–useful for when you are trying to debug. You can disable it by setting it to `false`. `storage` is a sqlite-only setting because sqlite is the only database that stores all its data to a single file.
+## Creating a model
+In any relational database, you need to create tables to store your data. This simple tag system will use four fields. The table in the database will look something like this:
+|name|description|username|usage_count|
+|--------|------|------|------|
+|alice   | is in wonderland   |  alice |11|
+| jack   | (～￣▽￣)～  |  jill |  5 |

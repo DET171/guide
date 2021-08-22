@@ -11,4 +11,7 @@ export default ({
   siteData // site metadata
 }) => {
   // ...apply enhancements for the site.
+  router.afterEach((to, from) => {
+    console.log("Navigated to" + to);
+  })
 }

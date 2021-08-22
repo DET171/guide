@@ -24,14 +24,45 @@
 
 	</script>
 	<script lang="javascript">
-	(function() {
-		var url = window.location.href;
-		var lastPart = url.substr(url.lastIndexOf('#') + 1);
+	setTimeout(function(){
+		let elementsArray = document.querySelectorAll("a");
 
-		if (lastPart === "reloaded") {
-			location.reload();
-		}
-	}());
+		elementsArray.forEach(function(elem) {
+			elem.addEventListener("click", function() {
+					setTimeout(() => {
+				var content = document.getElementsByClassName("theme-default-content")[0];
+					console.log(content);
+					var el = content.getElementsByTagName("P");
+					for (var i = 0; i < el.length; i++) {
+						el[i].setAttribute("data-aos", "fade-up")
+					}
+					var el = content.getElementsByTagName("DIV");
+					for (var i = 0; i < el.length; i++) {
+						el[i].setAttribute("data-aos", "fade-up")
+					}
+					var el = content.getElementsByTagName("H1");
+					for (var i = 0; i < el.length; i++) {
+						el[i].setAttribute("data-aos", "fade-up")
+					}
+					var el = content.getElementsByTagName("UL");
+					for (var i = 0; i < el.length; i++) {
+						el[i].setAttribute("data-aos", "fade-up")
+					}
+					var el = content.getElementsByTagName("OL");
+					for (var i = 0; i < el.length; i++) {
+						el[i].setAttribute("data-aos", "fade-up")
+					}
+					var el = content.getElementsByTagName("H2");
+					for (var i = 0; i < el.length; i++) {
+						el[i].setAttribute("data-aos", "fade-up")
+					}
+				AOS.init({
+					duration: 1000
+				})
+			}, 1000)
+			});
+		});
+	 }, 1000);
 	</script>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
 	<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
