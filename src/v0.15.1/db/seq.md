@@ -69,6 +69,16 @@ The model mirrors very closely what the database defines. There will be a table 
 ::: tip
 `Sequelize.STRING` vs. `Sequelize.TEXT`: In most database systems, the string's length is a fixed length for performance reasons. Sequelize defaults this to 255. Use STRING if your input has a max length, and use TEXT if it does not. For sqlite, there is no unbounded string type, so it will not matter which one you pick.
 :::
+Now, export the model by adding this at the bottom of the file:
+```js
+module.exports = {
+	Tags,
+};
+```
+and put
+```js
+const { Tags } = require('../../index.js');
+```
 ## Syncing the model
 Now that your structure is defined, you need to make sure the model exists in the database. To make sure the bot is ready and all the data you might need has arrived, place the following code into the `.on('ready', ...)` event callback.
 ```js

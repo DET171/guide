@@ -64,10 +64,57 @@
 		});
 	 }, 1000);
 	</script>
+	<script type="text/javascript">
+
+			setInterval(function() {
+				var curURL = window.location.origin + '/';
+				if (curURL != document.URL) return;
+				setTimeout(function() {
+					console.log('Working...');
+
+					let elementsArray = document.querySelectorAll("a");
+					elementsArray.forEach(function(elem) {
+						elem.addEventListener("click", function() {
+								setTimeout(() => {
+							var content = document.getElementsByClassName("theme-default-content")[0];
+								console.log(content);
+								var el = content.getElementsByTagName("P");
+								for (var i = 0; i < el.length; i++) {
+									el[i].setAttribute("data-aos", "fade-up")
+								}
+								var el = content.getElementsByTagName("DIV");
+								for (var i = 0; i < el.length; i++) {
+									el[i].setAttribute("data-aos", "fade-up")
+								}
+								var el = content.getElementsByTagName("H1");
+								for (var i = 0; i < el.length; i++) {
+									el[i].setAttribute("data-aos", "fade-up")
+								}
+								var el = content.getElementsByTagName("UL");
+								for (var i = 0; i < el.length; i++) {
+									el[i].setAttribute("data-aos", "fade-up")
+								}
+								var el = content.getElementsByTagName("OL");
+								for (var i = 0; i < el.length; i++) {
+									el[i].setAttribute("data-aos", "fade-up")
+								}
+								var el = content.getElementsByTagName("H2");
+								for (var i = 0; i < el.length; i++) {
+									el[i].setAttribute("data-aos", "fade-up")
+								}
+							AOS.init({
+								duration: 1000
+							})
+						}, 2200)
+						});
+
+					});
+				}, 1500)
+
+			}, 1500)
+	</script>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
 	<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-	<meta http-equiv="Pragma" content="no-cache">
-	<meta http-equiv="Expires" content="-1">
 <!--vuepress-ssr-head-->
 <!--vuepress-ssr-resources-->
 <!--vuepress-ssr-styles-->
