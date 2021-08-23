@@ -76,7 +76,7 @@ module.exports = {
 };
 ```
 and put
-```js
+```js	
 const { Tags } = require('../../index.js');
 ```
 ## Syncing the model

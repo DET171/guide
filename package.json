@@ -12,7 +12,9 @@
     "dev": "vuepress dev src",
     "build": "vuepress build src",
     "docs:build": "vuepress build docs",
-    "serve": "serve ./src/.vuepress/dist"
+    "serve": "serve ./src/.vuepress/dist",
+    "test": "npm run build",
+    "cov": "nyc npm test"
   },
   "license": "MIT",
   "devDependencies": {
@@ -25,6 +27,7 @@
     "@vuepress/plugin-search": "^2.0.0-beta.23",
     "@vuepress/shared-utils": "^1.8.2",
     "aos": "^2.3.4",
+    "nyc": "^15.1.0",
     "prismjs": "^1.24.1",
     "vuepress": "^2.0.0-beta.23",
     "vuepress-vite": "^2.0.0-beta.24"
