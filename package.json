@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "vuepress dev src",
     "build": "vuepress build src",
-    "postbuild": "serve ./src/.vuepress/dist",
+    "serve": "serve ./src/.vuepress/dist",
     "test": "npm run build --emptyOutDir",
     "cov": "npm test"
   },
