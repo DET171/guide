@@ -646,10 +646,10 @@
     "@vuepress/core" "2.0.0-alpha.1"
     execa "^4.1.0"
 
-"@vuepress/plugin-last-updated@^1.0.0-rc.1":
-  version "1.0.0-rc.1"
-  resolved "https://registry.npmjs.org/@vuepress/plugin-last-updated/-/plugin-last-updated-1.0.0-rc.1.tgz"
-  integrity sha512-0r/0GKwxl13dyshFnSeOzY33qHhir7azW5KQZ5LOrKJtLVfFxU7GqUf+heKHCxnLBDKMa1zlP2jpxT4DBHlIRg==
+"@vuepress/plugin-last-updated@^1.8.2":
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/@vuepress/plugin-last-updated/-/plugin-last-updated-1.8.2.tgz#7ce689f8d5050cf0213949bc2e5aa879c09ff4b1"
+  integrity sha512-pYIRZi52huO9b6HY3JQNPKNERCLzMHejjBRt9ekdnJ1xhLs4MmRvt37BoXjI/qzvXkYtr7nmGgnKThNBVRTZuA==
   dependencies:
     cross-spawn "^6.0.5"
 
