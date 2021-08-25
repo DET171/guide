@@ -1,0 +1,14 @@
+matrix:
+- name: Markdown
+  sources:
+  - '!venv/**/*.md|**/*.md'
+  default_encoding: utf-8
+  aspell:
+    lang: en
+  pipeline:
+  - pyspelling.filters.markdown:
+  - pyspelling.filters.html:
+      comments: false
+      ignores:
+      - code
+      - pre
