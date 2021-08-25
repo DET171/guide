@@ -8,6 +8,11 @@ module.exports = {
   theme: path.resolve(__dirname, 'theme', 'index.js'),
   templateDev: path.join(__dirname, 'templates', 'index.dev.html'),
 	templateSSR: path.join(__dirname, 'templates', 'index.ssr.html'),
+  markdown: {
+    code: {
+      lineNumbers: false,
+    }
+  },
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
    */

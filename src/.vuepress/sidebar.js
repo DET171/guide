@@ -39,7 +39,8 @@ module.exports = {
         text: 'Storing Data',
         children: [
           '/v0.15.1/db/',
-          '/v0.15.1/db/seq'
+          '/v0.15.1/db/seq',
+          '/v0.15.1/db/quickdb'
         ]
       },
       {
