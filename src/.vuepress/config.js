@@ -1,10 +1,12 @@
 const path = require('path');
 const { description } = require(path.join(__dirname, '../../package.json'))
 const sidebar = require(path.join(__dirname, './sidebar.js'));
+const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
   shouldPrefetch: true,
-  bundler: '@vuepress/vite',
+  bundler: process.env.DOCS_BUNDLER ?? (isProd ? '@vuepress/webpack' : '@vuepress/vite'),
+    // use vite in dev, use webpack in prod
   theme: path.resolve(__dirname, 'theme', 'index.js'),
   templateDev: path.join(__dirname, 'templates', 'index.dev.html'),
 	templateSSR: path.join(__dirname, 'templates', 'index.ssr.html'),
@@ -56,9 +58,23 @@ module.exports = {
         text: 'Guide(s)',
         children: [
           {
-            text: 'v0.15.1',
-            link: '/v0.15.1/',
+            text: 'Eris',
+            children: [
+              {
+                text: 'v0.15.1',
+                link: '/v0.15.1/',
+              },
+            ],
           },
+          {
+            text: 'Syntax',
+            children: [
+              {
+                text: 'ES6',
+                link: '/ES6/',
+              },
+            ]
+          }
         ],
       },
       {
@@ -83,15 +99,24 @@ module.exports = {
   plugins: [
     '@vuepress/plugin-back-to-top',
     '@vuepress/plugin-medium-zoom',
-    '@vuepress/last-updated',
-    '@vuepress/plugin-search',
+    '@vuepress/plugin-last-updated',
+    ['@vuepress/plugin-search',
       {
         locales: {
           '/': {
             placeholder: 'Search',
           },
         },
-        getExtraFields: (page) => page.headers ?? [],
+        getExtraFields: (page) => {
+          return page.headers ?? [];
+        },
       },
+    ],
+    ['@vuepress/plugin-shiki',
+      {
+        theme: 'github-dark',
+        langs: ['js', 'html', 'css', 'bash', 'json'],
+      },
+    ],
   ]
 }

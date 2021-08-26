@@ -77,4 +77,19 @@ module.exports = {
         ]
       }
     ],
-}
+    '/ES6/': [
+      {
+        text: 'Introduction',
+        children: [
+          '/ES6/',
+        ]
+      },
+      {
+        text: 'Usage & Functions',
+        children: [
+          '/ES6/af',
+          '/ES6/tl'
+        ],
+      },
+    ],
+};

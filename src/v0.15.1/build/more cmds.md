@@ -1,6 +1,6 @@
 # Making more commands
 First, let's add the one more line to the `.env` file:
-```env
+```
 PREFIX=!
 ```
 The prefix should now be set as `!`. Now, to access the prefix, we just need to type `process.env.PREFIX` in `index.js`.

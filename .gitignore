@@ -22,3 +22,4 @@ basement_dist
 .pnp.*
 *.log
 *.gz
+gulpfile.*

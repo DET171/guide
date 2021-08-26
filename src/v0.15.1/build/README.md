@@ -42,7 +42,7 @@ bot.on("messageCreate", (message) => { // When a message is created
 bot.connect(); // Get the bot to connect to Discord
 ```
 Put the following in `.env`
-```env
+```
 TOKEN=your-bot-token
 ```
 I will now explain it. <br>
