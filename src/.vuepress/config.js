@@ -74,6 +74,15 @@ module.exports = {
                 link: '/ES6/',
               },
             ]
+          },
+          {
+            text: 'Others',
+            children: [
+              {
+                text: 'Improving your dev environment',
+                link: '/misc/dev',
+              },
+            ]
           }
         ],
       },
@@ -97,6 +106,7 @@ module.exports = {
    * Apply plugins，ref：https://v1.vuepress.vuejs.org/zh/plugin/
    */
   plugins: [
+    '@vuepress/plugin-toc',
     '@vuepress/plugin-back-to-top',
     '@vuepress/plugin-medium-zoom',
     '@vuepress/plugin-last-updated',

@@ -43,3 +43,4 @@ console.log(`
 `);
 ```
 You can see how it makes things easier and more readable. In some cases, it can even make your code shorter! This one is something you'll want to take advantage of as much as possible.
+<sub>Last to code blocks sourced from [here](https://discordjs.guide/additional-info/es6-syntax.html#template-literals-vs-string-concatenation)</sub>

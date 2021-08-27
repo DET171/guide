@@ -1,22 +1,37 @@
 <template>
   <Layout>
     <template #sidebar-top>
-      <img class="sbtop" alt="eris@latest" src="https://img.shields.io/npm/v/eris/latest?label=eris">
+      <div class="sbtop">
+        <details>
+          <summary>Settings</summary>
+            <p>Theme:</p>
+            <button type="button" style="background-color: #00cc30;" class="btn" @click="c('#00cc30', '#00de34')"></button>
+            <button type="button" style="background-color: #0f73ff;" class="btn" @click="c('#0064f0', '#0f73ff')"></button>
+            <button type="button" style="background-color: #d400c2;" class="btn" @click="c('#d400c2', '#ff00ea')"></button>
+            <button type="button" style="background-color: #d17a00;" class="btn" @click="c('#d17a00', '#ff9500')"></button>
+
+        </details>
+      </div>
     </template>
     <template #page-bottom>
       <div style="text-align: center">Copyright &copy; Dusty 2021 - {{ new Date().getFullYear() }}</div>
     </template>
   </Layout>
 </template>
-<style lang="scss">
+<style lang="sass">
   /* PrismJS Theme --START-- */
-  @import "https://cdn.jsdelivr.net/npm/prismjs@1.24.1/themes/prism-okaidia.css";
+  @import "https://cdn.jsdelivr.net/npm/prismjs@1.24.1/themes/prism-okaidia.css"
   /* --END-- */
-  .sbtop {
-    position: relative;
-    top: 17px;
-    left: 55px;
-  }
+  .sbtop
+    padding: 1.5rem
+  .btn
+    padding: 4px 12px
+    border: none
+    height: 10px !important
+    width: 10px !important
+    cursor: pointer
+  details > summary
+    cursor: pointer
 </style>
 <script>
 import Layout from '@vuepress/theme-default/lib/client/layouts/Layout.vue'
@@ -93,5 +108,12 @@ export default {
       })
     }, 1000)
   },
+  methods: {
+    c: (b, bl) => {
+      const root = document.documentElement;
+      root.style.setProperty('--c-brand', b);
+      root.style.setProperty('--c-brand-light', bl);
+    },
+  }
 }
 </script>
