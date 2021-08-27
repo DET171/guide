@@ -18,20 +18,23 @@
     </template>
   </Layout>
 </template>
-<style lang="sass">
+<style lang="scss">
   /* PrismJS Theme --START-- */
-  @import "https://cdn.jsdelivr.net/npm/prismjs@1.24.1/themes/prism-okaidia.css"
+  @import "https://cdn.jsdelivr.net/npm/prismjs@1.24.1/themes/prism-okaidia.css";
   /* --END-- */
-  .sbtop
-    padding: 1.5rem
-  .btn
-    padding: 4px 12px
-    border: none
-    height: 10px !important
-    width: 10px !important
-    cursor: pointer
-  details > summary
-    cursor: pointer
+  .sbtop {
+    padding: 1.5rem;
+  }
+  .btn {
+    padding: 4px 12px;
+    border: none;
+    height: 10px !important;
+    width: 10px !important;
+    cursor: pointer;
+  }
+  details > summary {
+    cursor: pointer;
+  }
 </style>
 <script>
 import Layout from '@vuepress/theme-default/lib/client/layouts/Layout.vue'
