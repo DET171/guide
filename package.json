@@ -24,7 +24,7 @@
     "@vuepress/plugin-git": "^2.0.0-alpha.1",
     "@vuepress/plugin-medium-zoom": "^1.8.2",
     "@vuepress/plugin-palette": "^2.0.0-alpha.26",
-    "@vuepress/plugin-search": "^2.0.0-beta.23",
+    "@vuepress/plugin-search": "^2.0.0-beta.48",
     "@vuepress/plugin-shiki": "^2.0.0-beta.24",
     "@vuepress/plugin-toc": "^2.0.0-beta.24",
     "@vuepress/shared-utils": "^1.8.2",
